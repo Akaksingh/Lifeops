@@ -37,3 +37,6 @@ next-env.d.ts
 
 # local sqlite (billing/plan state — recreated at runtime)
 *.db
+
+# local dev bearer token (short-lived; refresh with `npm run lemma:token`)
+.lemma-dev-token

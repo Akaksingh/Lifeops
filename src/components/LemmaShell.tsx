@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, type ReactNode } from 'react';
-import { LemmaClient } from 'lemma-sdk';
+import { LemmaClient, setTestingToken } from 'lemma-sdk';
 import { AuthGuard } from 'lemma-sdk/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { LemmaContext, buildLemmaClient, isLemmaConfigured } from '@/lib/lemmaClient';
@@ -15,9 +15,30 @@ export default function LemmaShell({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!isLemmaConfigured()) return;
-    const c = buildLemmaClient();
-    // initialize() resolves auth/session state before the guard renders.
-    c.initialize().finally(() => setClient(c));
+    let cancelled = false;
+    (async () => {
+      // Local dev against hosted Lemma: the session cookie lives on lemma.work
+      // and can't be shared with this localhost origin, so cookie auth never
+      // succeeds (the SDK documents this in auth.js → checkAuth). Inject a bearer
+      // token first; the client then authenticates with Authorization headers and
+      // skips the cookie flow entirely. No-op in production (route returns null).
+      try {
+        const res = await fetch('/api/dev-token');
+        const { token } = await res.json();
+        if (token) setTestingToken(token);
+      } catch {
+        // fall back to cookie auth (correct for a same-site deployment)
+      }
+      if (cancelled) return;
+      const c = buildLemmaClient();
+      // initialize() resolves auth/session state before the guard renders.
+      c.initialize().finally(() => {
+        if (!cancelled) setClient(c);
+      });
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   if (!isLemmaConfigured()) return <SetupScreen />;

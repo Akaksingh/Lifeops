@@ -2,15 +2,15 @@
   "name": "tasks",
   "enable_rls": true,
   "columns": [
-    { "name": "title", "type": "text", "required": true, "description": "Task title" },
-    { "name": "source", "type": "text", "description": "gmail | notion | drive | calendar | manual" },
-    { "name": "source_url", "type": "text", "description": "Link back to the original item" },
-    { "name": "due_date", "type": "date", "description": "ISO date or null" },
-    { "name": "type", "type": "text", "description": "task | follow_up | deadline | recurring" },
-    { "name": "done", "type": "boolean", "default": false },
-    { "name": "followup", "type": "boolean", "default": false },
-    { "name": "recurring", "type": "boolean", "default": false },
-    { "name": "ext_id", "type": "text", "description": "Stable extraction key for dedup across syncs" },
-    { "name": "sync_count", "type": "integer", "default": 1 }
+    { "name": "title", "type": "TEXT", "required": true, "description": "Task title" },
+    { "name": "source", "type": "TEXT", "description": "gmail | notion | drive | calendar | manual" },
+    { "name": "source_url", "type": "TEXT", "description": "Link back to the original item" },
+    { "name": "due_date", "type": "DATE", "description": "ISO date or null" },
+    { "name": "type", "type": "TEXT", "description": "task | follow_up | deadline | recurring" },
+    { "name": "done", "type": "BOOLEAN", "default": false },
+    { "name": "followup", "type": "BOOLEAN", "default": false },
+    { "name": "recurring", "type": "BOOLEAN", "default": false },
+    { "name": "ext_id", "type": "TEXT", "description": "Stable extraction key for dedup across syncs" },
+    { "name": "sync_count", "type": "INTEGER", "default": 1 }
   ]
 }
