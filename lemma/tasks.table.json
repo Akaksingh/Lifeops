@@ -1,0 +1,16 @@
+{
+  "name": "tasks",
+  "enable_rls": true,
+  "columns": [
+    { "name": "title", "type": "text", "required": true, "description": "Task title" },
+    { "name": "source", "type": "text", "description": "gmail | notion | drive | calendar | manual" },
+    { "name": "source_url", "type": "text", "description": "Link back to the original item" },
+    { "name": "due_date", "type": "date", "description": "ISO date or null" },
+    { "name": "type", "type": "text", "description": "task | follow_up | deadline | recurring" },
+    { "name": "done", "type": "boolean", "default": false },
+    { "name": "followup", "type": "boolean", "default": false },
+    { "name": "recurring", "type": "boolean", "default": false },
+    { "name": "ext_id", "type": "text", "description": "Stable extraction key for dedup across syncs" },
+    { "name": "sync_count", "type": "integer", "default": 1 }
+  ]
+}
