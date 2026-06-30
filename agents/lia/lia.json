@@ -1,0 +1,11 @@
+{
+  "name": "lia",
+  "description": "Life Ops assistant — turns natural language (notes, pasted emails, brain dumps) into tracked task rows, answers questions about your open loops, and marks work done.",
+  "instruction": { "$file": "instruction.md" },
+  "toolsets": ["POD"],
+  "visibility": "POD",
+  "permissions": { "grants": [
+    { "resource_type": "datastore_table", "resource_name": "tasks",
+      "permission_ids": ["datastore.table.read", "datastore.record.read", "datastore.record.write"] }
+  ] }
+}
