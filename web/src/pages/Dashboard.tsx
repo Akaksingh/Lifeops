@@ -158,10 +158,10 @@ export default function Dashboard() {
   const liveSources = useMemo(() => buildLiveSources(tasks), [tasks]);
 
   return (
-    <div className="flex gap-6 px-6 py-6 max-w-[1180px] mx-auto">
+    <div className="flex flex-col lg:flex-row gap-6 px-4 sm:px-6 py-6 max-w-[1180px] mx-auto">
       {/* ── Center column ── */}
       <div className="flex-1 min-w-0">
-        <header className="flex items-start justify-between mb-5">
+        <header className="flex items-start justify-between gap-3 flex-wrap mb-5">
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-neutral-900">
               {greeting()}, {name} <span className="align-middle">☀️</span>
@@ -179,7 +179,7 @@ export default function Dashboard() {
         {/* Briefing card */}
         <div className="relative mb-5 rounded-2xl bg-gradient-to-br from-purple-100 via-purple-50 to-indigo-100 border border-purple-100 p-5 overflow-hidden">
           <span className="absolute left-4 top-2 text-3xl text-purple-300 leading-none">&ldquo;</span>
-          <p className="text-[15px] text-neutral-800 leading-relaxed pl-6 pr-44">
+          <p className="text-[15px] text-neutral-800 leading-relaxed pl-6 pr-24 sm:pr-44">
             {isLoading ? 'Reading your day…' : briefing || 'No briefing yet — hit Sync to pull your sources.'}
           </p>
           <img
@@ -190,7 +190,7 @@ export default function Dashboard() {
         </div>
 
         {/* Stat cards */}
-        <div className="grid grid-cols-4 gap-3 mb-5">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
           <StatCard icon={<AlertCircle className="w-4 h-4" />} value={stats.overdue} label="Overdue" tone="red" onView={() => setFilter('overdue')} />
           <StatCard icon={<CalendarClock className="w-4 h-4" />} value={stats.dueToday} label="Due Today" tone="amber" onView={() => setFilter('today')} />
           <StatCard icon={<Reply className="w-4 h-4" />} value={stats.followups} label="Follow-ups" tone="blue" onView={() => setFilter('followups')} />
@@ -198,13 +198,13 @@ export default function Dashboard() {
         </div>
 
         {/* Tabs + source filter */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex gap-1 items-center">
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <div className="flex gap-1 items-center overflow-x-auto no-scrollbar -mx-1 px-1">
             {FILTERS.map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-lg capitalize transition ${
+                className={`flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-lg capitalize transition shrink-0 whitespace-nowrap ${
                   filter === f ? 'bg-purple-500 text-white' : 'text-neutral-600 hover:bg-neutral-100'
                 }`}
               >
@@ -218,10 +218,10 @@ export default function Dashboard() {
               </button>
             ))}
           </div>
-          <div className="relative">
+          <div className="relative shrink-0">
             <button
               onClick={() => setSourceOpen((o) => !o)}
-              className="flex items-center gap-1 text-sm text-neutral-600 px-2 py-1.5 rounded-lg hover:bg-neutral-100"
+              className="flex items-center gap-1 text-sm text-neutral-600 px-2 py-1.5 rounded-lg hover:bg-neutral-100 whitespace-nowrap"
             >
               {source === 'all' ? 'All Sources' : source[0].toUpperCase() + source.slice(1)}
               <ChevronDown className="w-3.5 h-3.5" />
@@ -280,7 +280,7 @@ export default function Dashboard() {
               <RefreshCw className={`w-4 h-4 ${syncing ? 'animate-spin' : ''}`} />
             </button>
           </div>
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {liveSources.map((s) => (
               <div key={s.source} className="rounded-xl bg-white border border-neutral-200 p-3">
                 <div className="flex items-center justify-between mb-1">

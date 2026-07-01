@@ -24,7 +24,13 @@ const NAV = [
   { label: 'Settings', href: '/settings', icon: Settings },
 ];
 
-export default function NavSidebar() {
+export default function NavSidebar({
+  open = false,
+  onClose,
+}: {
+  open?: boolean;
+  onClose?: () => void;
+} = {}) {
   const { user } = useAuth(lemmaClient);
   const { path } = useHashRoute();
 
@@ -36,7 +42,11 @@ export default function NavSidebar() {
   const avatar: string | undefined = u?.avatarUrl || u?.picture;
 
   return (
-    <aside className="w-64 fixed left-0 top-0 h-screen overflow-y-auto flex flex-col bg-gradient-to-b from-[#fdf4ec] via-[#f8f1fa] to-[#f3edfb] border-r border-neutral-200/60">
+    <aside
+      className={`w-64 fixed left-0 top-0 h-screen z-50 overflow-y-auto flex flex-col bg-gradient-to-b from-[#fdf4ec] via-[#f8f1fa] to-[#f3edfb] border-r border-neutral-200/60 transform transition-transform duration-200 md:translate-x-0 ${
+        open ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:shadow-none'
+      }`}
+    >
       {/* Brand */}
       <div className="px-5 pt-6 pb-5">
         <div className="flex items-center gap-2.5">
@@ -60,6 +70,7 @@ export default function NavSidebar() {
               onClick={(e) => {
                 e.preventDefault();
                 navigate(href);
+                onClose?.();
               }}
               className={`flex items-center gap-3 px-3.5 py-2.5 rounded-2xl text-[15px] font-medium transition ${
                 active
@@ -84,6 +95,7 @@ export default function NavSidebar() {
           onClick={(e) => {
             e.preventDefault();
             navigate('/settings');
+            onClose?.();
           }}
           className="flex items-center gap-3 p-2.5 rounded-2xl bg-white border border-neutral-200/70 shadow-sm hover:border-neutral-300"
         >

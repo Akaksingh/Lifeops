@@ -58,14 +58,14 @@ export default function InsightsPage() {
   }, [open]);
 
   return (
-    <div className="px-6 py-6 max-w-[1180px] mx-auto">
+    <div className="px-4 sm:px-6 py-6 max-w-[1180px] mx-auto">
       <header className="mb-5">
         <h1 className="text-2xl font-bold tracking-tight text-neutral-900">Insights</h1>
         <p className="text-sm text-neutral-500">A read on your open loops across every source.</p>
       </header>
 
       {/* Stat cards */}
-      <div className="grid grid-cols-3 gap-3 mb-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-5">
         <Stat icon={<Layers className="w-4 h-4" />} value={stats.open} label="Open loops" tone="green" />
         <Stat icon={<AlertCircle className="w-4 h-4" />} value={stats.overdue} label="Overdue" tone="red" />
         <Stat icon={<CalendarClock className="w-4 h-4" />} value={stats.dueToday} label="Due today" tone="amber" />
@@ -74,7 +74,7 @@ export default function InsightsPage() {
         <Stat icon={<CheckCircle2 className="w-4 h-4" />} value={stats.done} label="Completed" tone="green" />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* By source */}
         <div className="rounded-2xl bg-white border border-neutral-200 p-5">
           <p className="text-sm font-semibold text-neutral-800 mb-4">Open loops by source</p>

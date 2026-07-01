@@ -62,8 +62,8 @@ export default function SourcesPage() {
   }
 
   return (
-    <div className="px-6 py-6 max-w-[1180px] mx-auto">
-      <header className="flex items-start justify-between mb-5">
+    <div className="px-4 sm:px-6 py-6 max-w-[1180px] mx-auto">
+      <header className="flex items-start justify-between gap-3 flex-wrap mb-5">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-neutral-900">Sources</h1>
           <p className="text-sm text-neutral-500">Connected services the agent scans for open loops.</p>
@@ -77,7 +77,7 @@ export default function SourcesPage() {
         </button>
       </header>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {SOURCE_DEFS.map((def) => {
           const stat = perSource.get(def.key)!;
           const g = SOURCE_GLYPH[def.key];

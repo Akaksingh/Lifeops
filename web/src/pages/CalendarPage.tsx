@@ -79,9 +79,9 @@ export default function CalendarPage() {
   }
 
   return (
-    <div className="flex gap-6 px-6 py-6 max-w-[1180px] mx-auto">
+    <div className="flex flex-col lg:flex-row gap-6 px-4 sm:px-6 py-6 max-w-[1180px] mx-auto">
       <div className="flex-1 min-w-0">
-        <header className="flex items-center justify-between mb-3">
+        <header className="flex items-center justify-between gap-3 flex-wrap mb-3">
           <div>
             <h1 className="text-2xl font-bold tracking-tight text-neutral-900">Calendar</h1>
             <p className="text-sm text-neutral-500">Your dated tasks, laid out across the month.</p>
@@ -129,7 +129,7 @@ export default function CalendarPage() {
                 <button
                   key={i}
                   onClick={() => setSelected(c.iso)}
-                  className={`h-24 border-b border-r border-neutral-100 p-1.5 text-left align-top transition ${
+                  className={`h-16 sm:h-24 border-b border-r border-neutral-100 p-1 sm:p-1.5 text-left align-top transition ${
                     c.inMonth ? 'bg-white' : 'bg-neutral-50/60'
                   } ${isSel ? 'ring-2 ring-inset ring-purple-400' : 'hover:bg-neutral-50'}`}
                 >
@@ -160,7 +160,7 @@ export default function CalendarPage() {
       </div>
 
       {/* Selected day */}
-      <aside className="w-80 shrink-0">
+      <aside className="w-full lg:w-80 shrink-0">
         <div className="rounded-2xl bg-white border border-neutral-200 p-4 sticky top-6">
           <h2 className="text-sm font-semibold text-neutral-800 mb-1">
             {selected

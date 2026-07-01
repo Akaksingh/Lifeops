@@ -6,7 +6,7 @@ import { Crown, Mail, CalendarPlus, ServerOff } from 'lucide-react';
 // points at the server build for the paid/integration tiers.
 export default function Settings() {
   return (
-    <div className="max-w-2xl mx-auto px-8 py-8">
+    <div className="max-w-2xl mx-auto px-4 sm:px-8 py-8 pt-6 md:pt-8">
       <h1 className="text-2xl font-semibold tracking-tight mb-1">Settings</h1>
       <p className="text-sm text-neutral-500 mb-6">Plan, reminders, and integrations.</p>
 

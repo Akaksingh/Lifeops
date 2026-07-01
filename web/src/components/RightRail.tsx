@@ -26,7 +26,7 @@ export default function RightRail({
   }
 
   return (
-    <div className="w-80 shrink-0 space-y-4">
+    <div className="w-full lg:w-80 shrink-0 space-y-4">
       {/* Your Focus */}
       <Card>
         <CardTitle icon={<Sparkles className="w-4 h-4 text-amber-500" />}>Your Focus</CardTitle>
